@@ -7,6 +7,7 @@ import { Gallery } from '../components/gallery/Gallery';
 import { Contact } from '../components/contact/Contact';
 import { Footer } from '../components/footer/Footer';
 import { Menu } from '../components/menu/Menu';
+import { Drink } from '../components/drink';
 
 document.querySelector('#root').innerHTML = render(
   <div className="page">
@@ -14,6 +15,10 @@ document.querySelector('#root').innerHTML = render(
     <main>
       <Banner />
       <Menu />
+      <Drink
+        name={'kava'}
+        image={'http://localhost:4000/assets/cups/romano.png'}
+      />
       <Gallery />
       <Contact />
     </main>
