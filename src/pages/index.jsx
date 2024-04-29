@@ -9,16 +9,16 @@ import { Footer } from '../components/footer/Footer';
 import { Menu } from '../components/menu/Menu';
 import { Drink } from '../components/drink';
 
+const response = await fetch('http://localhost:4000/api/drinks');
+const { data } = await response.json();
+console.log(data);
+
 document.querySelector('#root').innerHTML = render(
   <div className="page">
     <Header />
     <main>
       <Banner />
-      <Menu />
-      <Drink
-        name={'kava'}
-        image={'http://localhost:4000/assets/cups/romano.png'}
-      />
+      <Menu drinks={data} />
       <Gallery />
       <Contact />
     </main>
