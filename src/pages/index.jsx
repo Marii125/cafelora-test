@@ -36,3 +36,35 @@ const nav = document.querySelector('.rollout-nav');
 nav.addEventListener('click', () => {
   nav.classList.add('nav-closed');
 });
+
+const orderForm = document.querySelectorAll('.drink__controls');
+orderForm.forEach((button) => {
+  button.addEventListener('submit', async (event) => {
+    const here = event.target;
+    let order = true;
+    if (here.classList.contains('order-btn--ordered')) {
+      order = false;
+    }
+    //console.log(here.dataset.id);
+
+    const drinkResponse = await fetch(
+      `http://localhost:4000/api/drinks/${event.target.dataset.id}`,
+
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([
+          {
+            op: 'replace',
+            path: '/ordered',
+            value: order,
+          },
+        ]),
+      },
+    );
+    const data = await drinkResponse.json();
+    window.location.reload;
+  });
+});
